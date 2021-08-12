@@ -1,3 +1,24 @@
+<?php
+  $firstname = $name = $email = $phone = $message = "";
+  if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $firstname = verifyInput($_POST["firstname"]);
+    $lastname = verifyInput($_POST["lastname"]);
+    $email = verifyInput($_POST["email"]);
+    $phone = verifyInput($_POST["phone"]);
+    $message = verifyInput($_POST["message"]);
+  }
+
+  function verifyInput($var)
+  {
+    $var = trim($var);
+    $var = stripslashes($var);
+    $var = htmlspecialchars($var);
+
+    return $var;
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -29,7 +50,7 @@
       </div>
       <div class="row">
         <div class="col-lg-10 offset-1">
-          <form id="contact-form" method="post" action="" role="form">
+          <form id="contact-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" role="form">
             <div class="row">
               <div class="col-md-6">
                 <label for="firstname"
@@ -41,6 +62,7 @@
                   name="firstname"
                   class="form-control"
                   placeholder="Votre prénom"
+                  value="<?php echo $firstname ?>"
                 />
                 <p class="comments">Message d'erreur</p>
               </div>
@@ -53,6 +75,7 @@
                   name="lastname"
                   class="form-control"
                   placeholder="Votre nom"
+                  value="<?php echo $lastname ?>"
                 />
                 <p class="comments">Message d'erreur</p>
               </div>
@@ -65,6 +88,7 @@
                   name="email"
                   class="form-control"
                   placeholder="Votre email"
+                  value="<?php echo $email ?>"
                 />
                 <p class="comments">Message d'erreur</p>
               </div>
@@ -77,6 +101,7 @@
                   name="phone"
                   class="form-control"
                   placeholder="Votre téléphone"
+                  value="<?php echo $phone ?>"
                 />
                 <p class="comments">Message d'erreur</p>
               </div>
@@ -89,6 +114,7 @@
                   rows="6"
                   class="form-control"
                   placeholder="Votre message"
+                  value="<?php echo $message ?>"
                 ></textarea>
                 <p class="comments">Message d'erreur</p>
               </div>
