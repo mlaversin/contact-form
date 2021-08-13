@@ -1,40 +1,5 @@
-<?php
-  $firstname = $lastname = $email = $phone = $message = "";
-  $firstnameError = $lastnameError = $emailError = $phoneError = $messageError = "";
-
-  if($_SERVER["REQUEST_METHOD"] == "POST") {
-    $firstname = verifyInput($_POST["firstname"]);
-    $lastname = verifyInput($_POST["lastname"]);
-    $email = verifyInput($_POST["email"]);
-    $phone = verifyInput($_POST["phone"]);
-    $message = verifyInput($_POST["message"]);
-
-    if(empty($firstname))  {
-      $firstnameError = "Merci de renseigner votre prénom !";
-    }
-    if(empty($lastname))  {
-      $lastnameError = "Merci de renseigner votre nom !";
-    }
-    if(empty($email))  {
-      $emailError = "Merci de renseigner votre email !";
-    }
-    if(empty($phone))  {
-      $phoneError = "Merci de renseigner votre n° de téléphone !";
-    }
-    if(empty($message))  {
-      $messageError = "Merci de saisir un message !";
-    }
-  }
-
-  function verifyInput($var)
-  {
-    $var = trim($var);
-    $var = stripslashes($var);
-    $var = htmlspecialchars($var);
-
-    return $var;
-  }
-
+<?php 
+  include './php/contact.php';
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +8,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contactez-moi !</title>
+    <title>Contact</title>
     <!-- CDN Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -71,7 +36,7 @@
           <form id="contact-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" role="form">
             <div class="row">
               <div class="col-md-6">
-                <label for="firstname"
+                <label for="firstname" class="form-label"
                   >Prénom <span class="blue">*</span></label
                 >
                 <input
@@ -81,13 +46,12 @@
                   class="form-control"
                   placeholder="Votre prénom"
                   value="<?php echo $firstname; ?>"
-                  required
                 />
                 <p class="comments"><?php $firstnameError; ?></p>
               </div>
 
               <div class="col-md-6">
-                <label for="lastname">Nom <span class="blue">*</span></label>
+                <label for="lastname" class="form-label">Nom <span class="blue">*</span></label>
                 <input
                   id="lastname"
                   type="text"
@@ -95,13 +59,12 @@
                   class="form-control"
                   placeholder="Votre nom"
                   value="<?php echo $lastname; ?>"
-                  required
                 />
                 <p class="comments"><?php $lastnameError; ?></p>
               </div>
 
               <div class="col-md-6">
-                <label for="email">Email <span class="blue">*</span></label>
+                <label for="email" class="form-label">Email <span class="blue">*</span></label>
                 <input
                   id="email"
                   type="email"
@@ -109,13 +72,12 @@
                   class="form-control"
                   placeholder="Votre email"
                   value="<?php echo $email; ?>"
-                  required
                 />
                 <p class="comments"><?php $emailError; ?></p>
               </div>
 
               <div class="col-md-6">
-                <label for="phone">Téléphone</label>
+                <label for="phone" class="form-label">Téléphone</label>
                 <input
                   id="phone"
                   type="tel"
@@ -123,13 +85,12 @@
                   class="form-control"
                   placeholder="Votre téléphone"
                   value="<?php echo $phone; ?>"
-                  required
                 />
                 <p class="comments"><?php $phoneError; ?></p>
               </div>
 
               <div class="col-md-12">
-                <label for="message">Message <span class="blue">*</span></label>
+                <label for="message" class="form-label">Message <span class="blue">*</span></label>
                 <textarea
                   id="message"
                   name="message"
@@ -137,7 +98,6 @@
                   class="form-control"
                   placeholder="Votre message"
                   value="<?php echo $message; ?>"
-                  required
                 ></textarea>
                 <p class="comments"><?php $messageError; ?></p>
               </div>
@@ -153,11 +113,11 @@
               </div>
 
               <div class="col-md-12">
-                <input type="text" class="btn-1" value="Envoyer" />
+                <input type="submit" class="btn-1" value="Envoyer" />
               </div>
             </div>
 
-            <p class="thank-you">
+            <p class="thank-you" style="display: <?php if($isSuccess) echo 'block' ; else echo 'none' ?>">
               Votre message a bien été envoyé. Merci de m'avoir contacté !
             </p>
           </form>
