@@ -25,7 +25,7 @@
             $emailText .= "Firstname: $firstname\n";
         }
 
-        if (empty($array["lastname"]))
+        if (empty($lastname))
         {
             $lastnameError = "Merci de renseigner votre nom !";
             $isSuccess = false;
@@ -69,17 +69,18 @@
         {
             $headers = "From: $firstname $lastname <$email>\r\nReply-To: $email";
             mail($emailTo, "Un message de votre site", $emailText, $headers);
+            $firstname = $lastname = $email = $phone = $message = "";
         }
 
     }
 
-    function isEmail($email) 
+    function isEmail($var) 
     {
-        return filter_var($email, FILTER_VALIDATE_EMAIL);
+        return filter_var($var, FILTER_VALIDATE_EMAIL);
     }
-    function isPhone($phone) 
+    function isPhone($var) 
     {
-        return preg_match("/^[0-9 ]*$/",$phone);
+        return preg_match("/^[0-9 ]*$/",$var);
     }
     function verifyInput($data) 
     {

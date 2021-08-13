@@ -26,15 +26,19 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
+
     <div class="container">
       <div class="divider"></div>
       <div class="heading">
         <h2>Contact</h2>
       </div>
+
       <div class="row">
         <div class="col-lg-10 offset-1">
+
           <form id="contact-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" role="form">
             <div class="row">
+
               <div class="col-md-6">
                 <label for="firstname" class="form-label"
                   >Prénom <span class="blue">*</span></label
@@ -47,7 +51,7 @@
                   placeholder="Votre prénom"
                   value="<?php echo $firstname; ?>"
                 />
-                <p class="comments"><?php $firstnameError; ?></p>
+                <p class="comments"><?php echo $firstnameError; ?></p>
               </div>
 
               <div class="col-md-6">
@@ -60,7 +64,7 @@
                   placeholder="Votre nom"
                   value="<?php echo $lastname; ?>"
                 />
-                <p class="comments"><?php $lastnameError; ?></p>
+                <p class="comments"><?php echo $lastnameError; ?></p>
               </div>
 
               <div class="col-md-6">
@@ -73,7 +77,7 @@
                   placeholder="Votre email"
                   value="<?php echo $email; ?>"
                 />
-                <p class="comments"><?php $emailError; ?></p>
+                <p class="comments"><?php echo $emailError; ?></p>
               </div>
 
               <div class="col-md-6">
@@ -86,7 +90,7 @@
                   placeholder="Votre téléphone"
                   value="<?php echo $phone; ?>"
                 />
-                <p class="comments"><?php $phoneError; ?></p>
+                <p class="comments"><?php echo $phoneError; ?></p>
               </div>
 
               <div class="col-md-12">
@@ -99,17 +103,11 @@
                   placeholder="Votre message"
                   value="<?php echo $message; ?>"
                 ></textarea>
-                <p class="comments"><?php $messageError; ?></p>
+                <p class="comments"><?php echo $messageError; ?></p>
               </div>
 
               <div class="col-md-12">
-                <p>
-                  <small
-                    ><span class="blue"
-                      >* Ces informations sont requises.</span
-                    ></small
-                  >
-                </p>
+                <p class="blue"><strong>* Ces informations sont requises.</strong></p>
               </div>
 
               <div class="col-md-12">
@@ -117,9 +115,10 @@
               </div>
             </div>
 
-            <p class="thank-you" style="display: <?php if($isSuccess) echo 'block' ; else echo 'none' ?>">
+            <p class="thank-you" style="display:<?php if($isSuccess) echo 'block'; else echo 'none';?>">
               Votre message a bien été envoyé. Merci de m'avoir contacté !
             </p>
+
           </form>
         </div>
       </div>
